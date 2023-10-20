@@ -545,48 +545,58 @@ var current_plane = 1;
 plane1.addEventListener("click", () => {
   current_plane = 2;
   tl.restart();
+  resetInterval();
 });
 //trigger2
 plane2.addEventListener("click", () => {
   current_plane = 3;
   tl2.restart();
+  resetInterval();
 });
 //trigger3
 plane3.addEventListener("click", () => {
   current_plane = 4;
   tl3.restart();
+  resetInterval();
 });
 //trigger4
 plane4.addEventListener("click", () => {
   current_plane = 5;
   tl4.restart();
+  resetInterval();
 });
 //trigger5
 plane5.addEventListener("click", () => {
   current_plane = 6;
   tl5.restart();
+  resetInterval();
 });
 //trigger6
 plane6.addEventListener("click", () => {
   current_plane = 7;
   tl6.restart();
+  resetInterval();
 });
 //trigger7
 plane7.addEventListener("click", () => {
   current_plane = 8;
   tl7.restart();
+  resetInterval();
 });
 //trigger8
 plane8.addEventListener("click", () => {
   current_plane = 9;
   tl8.restart();
+  resetInterval();
   document.querySelector(".circle-one").style.zIndex = "10";
 });
 //trigger9
 plane9.addEventListener("click", () => {
   current_plane = 1;
   tl9.restart();
+  resetInterval();
   document.querySelector(".circle-one").style.zIndex = "2";
+  document.querySelector(".circle-two").style.zIndex = "10";
 });
 var interval;
 
@@ -622,12 +632,10 @@ function changePlane() {
   } else if (current_plane == 8) {
     current_plane = 9;
     $(".plane-eight").click();
-    document.querySelector(".circle-one").style.zIndex = "10";
     resetInterval();
   } else if (current_plane == 9) {
     current_plane = 1;
     $(".plane-nine").click();
-    document.querySelector(".circle-one").style.zIndex = "2";
     resetInterval();
   }
 }
@@ -635,7 +643,27 @@ function changePlane() {
 function resetInterval() {
   clearInterval(interval); // Clear the existing interval
   interval = setInterval(changePlane, 6000); // Set up a new interval
-  console.log("test");
+  // console.log("on plane");
 }
 
-interval = setInterval(changePlane, 6000);
+document
+  .querySelector(
+    ".plane-one, .plane-two, .plane-three, .plane-four,.plane-five,.plane-six,.plane-seven,.plane-eight,.plane-nine"
+  )
+  .addEventListener("mouseenter", resetInterval);
+
+document
+  .querySelector(
+    ".plane-one, .plane-two, .plane-three, .plane-four,.plane-five,.plane-six,.plane-seven,.plane-eight,.plane-nine"
+  )
+  .addEventListener("mousemove", resetInterval);
+
+document
+  .querySelector(
+    ".plane-one, .plane-two, .plane-three, .plane-four,.plane-five,.plane-six,.plane-seven,.plane-eight,.plane-nine"
+  )
+  .addEventListener("mouseleave", resetInterval);
+
+resetInterval();
+
+// interval = setInterval(changePlane, 6000);
